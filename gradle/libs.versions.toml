@@ -1,0 +1,24 @@
+[versions]
+#Annotations
+lombok                 = "1.18.30"
+jetbrains              = "23.0.0"
+
+#Core
+minecraftVersion = "1.20.1"
+forgeVersion     = "47.4.0"
+parchment              = "2023.09.03"
+
+[libraries]
+
+# Annotations
+lombok           = { module = "org.projectlombok:lombok",           version.ref = "lombok" }
+jetbrains        = { module = "org.jetbrains:annotations",         version.ref = "jetbrains" }
+
+# Core
+forge = { module = "net.minecraftforge:forge", version.ref = "forgeVersion" }
+
+
+
+[bundles]
+annotations        = [ "lombok", "jetbrains" ]
+

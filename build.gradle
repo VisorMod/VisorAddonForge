@@ -1,0 +1,83 @@
+plugins {
+    id 'java'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'  // Add this line
+}
+
+group = 'me.phoenixra'
+version = '1.0.0-SNAPSHOT'
+archivesBaseName = 'VisorAddonForge'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+minecraft {
+    // Use Parchment mappings to match Visor
+    mappings channel: 'parchment', version: '2023.09.03-1.20.1'
+
+}
+
+repositories {
+    maven { url = 'https://maven.minecraftforge.net/' }
+    mavenCentral()
+    maven { url = 'https://jitpack.io' }
+    maven { url = 'https://redempt.dev' }
+    maven { url = 'https://maven.parchmentmc.org' }  // Add this for Parchment
+}
+
+dependencies {
+    // This line tells ForgeGradle which MC+Forge combo to use
+    minecraft "net.minecraftforge:forge:1.20.1-47.4.0"
+
+    // Your own jars in /libs
+    compileOnly fg.deobf(fileTree(dir: 'libs', include: '*.jar'))
+
+    // Annotations from libs.versions.toml
+    compileOnly libs.bundles.annotations
+    annotationProcessor libs.bundles.annotations
+}
+
+configurations {
+    // for shading only
+    shade {
+        canBeResolved = true
+        canBeConsumed = false
+        extendsFrom implementation
+    }
+}
+
+shadowJar {
+    configurations = [project.configurations.shade]
+    archiveClassifier.set('dev-shadow')
+
+    // relocate dependencies into your namespace
+    relocate 'org.yaml.snakeyaml',     'me.phoenixra.libs.org.yaml.snakeyaml'
+    relocate 'com.google.gson',        'me.phoenixra.libs.com.google.gson'
+    relocate 'redempt.crunch',         'me.phoenixra.libs.redempt.crunch'
+    relocate 'me.phoenixra.atumconfig','me.phoenixra.libs.me.phoenixra.atumconfig'
+}
+
+// Tell ForgeGradle to re‑obfuscate your shadowJar
+reobf {
+    shadowJar { }
+}
+
+// Make sure the final build picks up that reobfShadowJar
+tasks.build {
+    dependsOn 'reobfShadowJar'
+}
+tasks.named('jar') {
+    finalizedBy 'reobfShadowJar'
+}
+
+// Inject project.version into your mods.toml
+tasks.processResources {
+    inputs.property 'version', project.version
+    filesMatching('META-INF/mods.toml') {
+        expand(version: project.version)
+    }
+}
