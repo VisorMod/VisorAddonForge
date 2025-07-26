@@ -1,24 +1,32 @@
 [versions]
+#Gradle Addons
+shadow              = "8.1.1"
+forgeGradle         = "[6.0,6.2)"
+forgeParchment      = "1.+"
+
 #Annotations
-lombok                 = "1.18.30"
-jetbrains              = "23.0.0"
+lombok      = "1.18.30"
+jetbrains   = "23.0.0"
+
 
 #Core
-minecraftVersion = "1.20.1"
-forgeVersion     = "47.4.0"
-parchment              = "2023.09.03"
+minecraft        = "1.20.1"
+forge            = "47.4.0"
+parchment        = '2023.09.03'
+
+
+[plugins]
+shadow            = { id = "com.github.johnrengelman.shadow",  version.ref = "shadow" }
+forgeGradle       = { id = "net.minecraftforge.gradle",  version.ref = "forgeGradle" }
+forgeParchment    = { id = "org.parchmentmc.librarian.forgegradle",  version.ref = "forgeParchment" }
+
 
 [libraries]
-
 # Annotations
 lombok           = { module = "org.projectlombok:lombok",           version.ref = "lombok" }
 jetbrains        = { module = "org.jetbrains:annotations",         version.ref = "jetbrains" }
 
-# Core
-forge = { module = "net.minecraftforge:forge", version.ref = "forgeVersion" }
-
-
 
 [bundles]
-annotations        = [ "lombok", "jetbrains" ]
+annotations      = [ "lombok", "jetbrains" ]
 

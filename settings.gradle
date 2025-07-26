@@ -1,18 +1,10 @@
-// settings.gradle
 pluginManagement {
     repositories {
-        // ForgeGradle plugin
-        maven { url = 'https://maven.minecraftforge.net/' }
-        // Your existing repositories
         mavenCentral()
         gradlePluginPortal()
+        maven { url = 'https://maven.minecraftforge.net/' }
+        maven { url = 'https://maven.parchmentmc.org' }
         maven { url = 'https://jitpack.io' }
-        maven { url = 'https://redempt.dev' }
-        maven { url = 'https://maven.parchmentmc.org' }  // Add this
-    }
-    plugins {
-        // required for Java toolchains resolution
-        id 'org.gradle.toolchains.foojay-resolver-convention' version '0.5.0'
     }
 }
 rootProject.name = 'VisorAddonForge'
