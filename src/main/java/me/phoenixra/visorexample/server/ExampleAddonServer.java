@@ -14,7 +14,7 @@ public class ExampleAddonServer implements VisorAddon {
 
     @Override
     public @Nullable String getAddonPackagePath() {
-        return "me.phoenixra.visorexample.core.server";
+        return "me.phoenixra.visorexample.server";
     }
 
     @Override
