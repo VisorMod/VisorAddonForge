@@ -16,12 +16,14 @@ repositories {
     mavenCentral()
     maven { url = 'https://maven.minecraftforge.net/' }
     maven { url = 'https://jitpack.io' }
+
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:"+libs.versions.minecraft.get()+"-"+libs.versions.forge.get()
 
-    compileOnly fg.deobf(fileTree(dir: 'libs', include: '*.jar'))
+    compileOnly fg.deobf("com.github.VisorMod.Visor:forge:0.1.0-pre16")
+
 
     compileOnly libs.bundles.annotations
     annotationProcessor libs.bundles.annotations
