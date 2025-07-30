@@ -13,6 +13,7 @@ jetbrains   = "23.0.0"
 minecraft        = "1.20.1"
 forge            = "47.4.0"
 parchment        = '2023.09.03'
+visorApi               = "0.1.0"
 
 
 [plugins]
@@ -26,6 +27,8 @@ forgeParchment    = { id = "org.parchmentmc.librarian.forgegradle",  version.ref
 lombok           = { module = "org.projectlombok:lombok",           version.ref = "lombok" }
 jetbrains        = { module = "org.jetbrains:annotations",         version.ref = "jetbrains" }
 
+#Core
+visorApi           = {module = "com.github.VisorMod.Visor:forge", version.ref = "visorApi"}
 
 [bundles]
 annotations      = [ "lombok", "jetbrains" ]

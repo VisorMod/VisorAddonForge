@@ -22,7 +22,7 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:"+libs.versions.minecraft.get()+"-"+libs.versions.forge.get()
 
-    compileOnly fg.deobf("com.github.VisorMod.Visor:forge:0.1.0-pre16")
+    compileOnly fg.deobf(libs.visorApi)
 
 
     compileOnly libs.bundles.annotations
