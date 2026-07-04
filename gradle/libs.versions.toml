@@ -5,8 +5,8 @@ forgeGradle         = "[6.0,6.2)"
 forgeParchment      = "1.+"
 
 #Annotations
-lombok      = "1.18.30"
-jetbrains   = "23.0.0"
+lombok              = "1.18.46"
+jetbrains           = "26.1.0"
 
 
 #Core
