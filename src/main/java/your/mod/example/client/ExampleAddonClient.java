@@ -9,10 +9,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class ExampleAddonClient implements VisorAddon {
-    @Override
-    public void onAddonRegister() {
-
-    }
 
     @Override
     public void onAddonLoad() {
